@@ -1,0 +1,28 @@
+# .NET / build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.cache
+publish/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+_run.log
+_run.err
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# npm (if ever introduced)
+node_modules/
+package-lock.json
+
+# GitHub Pages
+docs/

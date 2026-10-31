@@ -1,0 +1,43 @@
+# Project Tech Stack Rules
+
+## Architecture
+
+- Frontend: HTML5 + CSS3 + vanilla JavaScript (no build step, no framework, no npm dependencies).
+- Purely client-side static web app — BMI calculation runs in the browser; no backend API required.
+- Follow Clean Architecture-lite principles: separate structure (HTML), presentation (CSS), behavior (JS).
+- Feature-based folder organization: `frontend/` holds all client assets; `memory-bank/` holds project context.
+
+## Frontend (HTML / CSS / JS)
+
+- Use semantic HTML5 elements (`header`, `main`, `form`, `section`, `footer`, `figure`).
+- Plain JavaScript only (per requirements — no TypeScript).
+- Use CSS custom properties (variables) for theming; no Tailwind.
+- Mobile-first responsive design; touch targets ≥ 44 px.
+- Follow accessibility best practices: labels, `inputmode="decimal"`, ARIA live region, `fieldset`/`legend` or radiogroup, reduced motion (`prefers-reduced-motion`).
+- Components should stay small and focused; extract reusable DOM helpers into functions.
+- Keep API calls outside UI components — N/A (no API). Keep calculation logic separate from rendering.
+- Avoid inline styles except for dynamic values (e.g., gauge stroke-dashoffset).
+- Use `localStorage` only for user preferences (units, last result).
+- Prefer `addEventListener` delegation; IIFE or module pattern to avoid globals.
+- Validate all user input client-side before calculating.
+
+## Memory Bank (per project)
+
+These files live in `memory-bank/`. Update after each session / milestone as noted.
+
+| File | Purpose | Update cadence |
+|------|---------|----------------|
+| `projectbrief.md` | One-paragraph statement of what the project builds and scope (in/out). | Only when requirements change. |
+| `activeContext.md` | What you're working on right now, current state, next steps, key decisions, open questions. | After every session. |
+| `progress.md` | Milestone checklist (done / in progress / blocked). | After significant milestones or direction changes. |
+| `productContext.md` | Problem solved, target users, key features, constraints. | When features/scope change. |
+| `systemPatterns.md` | Architecture, data flow, component structure, naming conventions. | When architecture changes. |
+| `techContext.md` | Stack, tooling, dependencies, browser support. | When the tech stack changes. |
+
+## Project Standards
+
+- Use descriptive, camelCase IDs and kebab-case CSS classes.
+- No hardcoded secrets, API keys, or credentials (none needed).
+- Remove dead code and unused imports/styles.
+- Deploy `frontend/` to GitHub Pages via `.github/workflows/pages.yml`.
+- Maintain consistent formatting; keep files under ~300 lines where practical.

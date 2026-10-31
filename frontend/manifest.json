@@ -1,0 +1,10 @@
+{
+  "name": "BMI Calculator",
+  "short_name": "BMI Calc",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#2563eb",
+  "description": "A modern, mobile-friendly BMI calculator that works offline.",
+  "icons": []
+}
