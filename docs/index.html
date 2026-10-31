@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="description" content="Calculate your Body Mass Index with our modern, mobile-friendly BMI calculator." />
+  
+  <link rel="stylesheet" href="style.css" />
+  <title>BMI Calculator</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">⚖️ BMI<span>Calc</span></div>
+        <fieldset class="unit-toggle" role="radiogroup" aria-label="Measurement system">
+          <legend class="visually-hidden">Measurement system</legend>
+          <label class="toggle">
+            <input type="radio" name="system" value="metric" checked />
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Metric</span>
+          </label>
+          <label class="toggle">
+            <input type="radio" name="system" value="imperial" />
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Imperial</span>
+          </label>
+        </fieldset>
+      </div>
+    </header>
+
+    <main class="container">
+      <form id="bmiForm" novalidate>
+        <div class="input-group metric" id="grpHeightCm">
+          <label class="field-label" id="heightLabel">Height (centimeters)</label>
+          <input type="number" id="heightCm" step="0.1" min="10" max="300" placeholder="e.g. 170" value="170" autocomplete="off" inputmode="decimal" />
+          <span class="field-hint" id="heightHint">170 cm</span>
+        </div>
+
+        <div class="input-group imperial" id="grpHeightImperial">
+          <label class="field-label" id="heightLabelImperial">Height (feet)</label>
+          <div class="inline-pair">
+            <input type="number" id="heightFeet" step="0.01" min="0" max="8" placeholder="ft" value="5" autocomplete="off" inputmode="decimal" />
+            <span class="inline-label">ft</span>
+
+
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="field-label" id="weightLabel">Weight (kilograms)</label>
+          <input type="number" id="weightKg" step="0.1" min="1" max="300" placeholder="e.g. 70" value="70" autocomplete="off" inputmode="decimal" />
+          <span class="field-hint" id="weightHint">70 kg</span>
+        </div>
+        <div class="input-group imperial" id="grpWeightLb">
+          <label class="field-label" id="weightLabelLb">Weight (pounds)</label>
+          <input type="number" id="weightLb" step="0.1" min="1" max="1000" placeholder="e.g. 150" value="150" autocomplete="off" inputmode="numeric" />
+          <span class="field-hint" id="weightHintLb">150 lb</span>
+        </div>
+
+        <button type="submit" id="calcBtn" class="btn-primary">
+          <span class="btn-text">Calculate BMI</span>
+          <span class="btn-loading" style="display:none">Calculating…</span>
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </button>
+      </form>
+
+      <div class="error-msg" id="errorMsg" role="alert" style="display:none"></div>
+
+      <section class="result-card" id="resultCard" style="display:none" aria-live="polite">
+        <div class="result-header">
+          <h2 id="resultTitle">Your BMI</h2>
+        </div>
+        <div class="bmi-display">
+          <div class="gauge-wrap">
+            <svg class="gauge" id="bmiGauge" viewBox="0 0 100 100">
+              <circle class="gauge-bg" cx="50" cy="50" r="42" />
+              <circle class="gauge-progress" id="gaugeProgress" cx="50" cy="50" r="42" />
+            </svg>
+            <div class="bmi-value-wrap">
+              <span class="bmi-number" id="bmiValue">--</span>
+              <span class="bmi-unit">BMI</span>
+            </div>
+          </div>
+          <div class="category-info">
+            <div class="category-badge" id="categoryBadge">Normal</div>
+            <p class="category-desc" id="categoryDesc">Healthy weight</p>
+          </div>
+        </div>
+        <div class="result-details">
+          <div class="detail-item"><span class="detail-label">Height</span><span class="detail-value" id="dispHeight">--</span></div>
+          <div class="detail-item"><span class="detail-label">Weight</span><span class="detail-value" id="dispWeight">--</span></div>
+          <div class="detail-item"><span class="detail-label">Healthy range</span><span class="detail-value" id="dispRange">18.5 – 24.9</span></div>
+        </div>
+        <div class="range-legend">
+          <span class="legend-item"><b>Underweight</b> &lt; 18.5</span>
+          <span class="legend-item"><b>Normal</b> 18.5–24.9</span>
+          <span class="legend-item"><b>Overweight</b> 25–29.9</span>
+          <span class="legend-item"><b>Obese</b> ≥ 30</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>BMI Calculator &middot; Built with HTML, CSS &amp; JavaScript</p>
+      <p class="footer-note">Works offline &middot; No data leaves your device.</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
