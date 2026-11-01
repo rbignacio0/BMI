@@ -256,6 +256,7 @@
     return null;
   }
 
+
   function gatherInputs() {
     if (system === 'metric') {
       return {

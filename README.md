@@ -1,6 +1,8 @@
 # BMI Calculator
 
-A modern, mobile-friendly BMI calculator built with **HTML, CSS, and vanilla JavaScript**. It runs entirely in the browser — no backend, no API key, no build step — and works offline.
+A modern, mobile-friendly BMI calculator that supports **both client-side calculation (offline) and C# API integration (online)**. Built with HTML, CSS, and vanilla JavaScript, it runs in the browser and works offline — with optional backend API for online mode.
+
+
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-docs%2F-2ea44f?style=flat-square)](https://BMI.github.io/)
 
