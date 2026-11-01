@@ -283,8 +283,34 @@
 
     setLoading(true);
     try {
-      const inputs = gatherInputs();
-      const res = compute(system, inputs.h, inputs.w);
+      // Try API first if available (online mode), fallback to client-side
+      let res;
+      try {
+        const inputs = gatherInputs();
+        const fetchRes = await fetch('/bmicalc/calculate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ system, ...inputs })
+        });
+        if (fetchRes.ok) {
+          const data = await fetchRes.json();
+          res = {
+            bmi: data.Bmi,
+            heightMeters: data.HeightMeters,
+            weightKg: data.WeightKg,
+            category: data.Category
+          };
+        } else {
+          // API returned error, fallback to client-side
+          throw new Error('API error');
+        }
+      } catch (fetchErr) {
+        // Fallback to client-side calculation (offline mode)
+        console.log('API not available, using client-side calculation');
+        const inputs = gatherInputs();
+        res = compute(system, inputs.h, inputs.w);
+      }
+
       savePrefs({
         system,
         heightCm: system === 'metric' ? inputs.h : Math.round(res.heightMeters * 100),
