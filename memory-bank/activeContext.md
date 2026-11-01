@@ -13,6 +13,7 @@ BMI calculator rewrite complete as a standalone HTML/CSS/JS static web app. Docu
 - `docs/` populated with frontend files and pushed to main (commit 593b15f). `.gitignore` no longer ignores `docs/`.
 - Fixed bug: added missing `heightLabelImperial`, `weightLabelLb`, and `weightHintLb` to `els` object in app.js (TypeError when clicking metric vs imperial). Republished to main (commit 121556c).
 - Added cache-busting `?v=3` to app.js script tag in index.html; republished to main (commit 4b6c492) to prevent stale cached script loading.
+- Fixed accessibility issue: associated field labels with their form inputs via `for` attributes (frontend/ and docs/ index.html).
 - docs/ created with ProgramSpecification.md, Architecture.md, FeaturesAndLimitations.md.
 - README.md rewritten with deployment + docs references.
 - .github/workflows/pages.yml targets frontend/ (correct, no change needed).

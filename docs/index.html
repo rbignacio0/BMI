@@ -33,13 +33,13 @@
     <main class="container">
       <form id="bmiForm" novalidate>
         <div class="input-group metric" id="grpHeightCm">
-          <label class="field-label" id="heightLabel">Height (centimeters)</label>
+          <label class="field-label" id="heightLabel" for="heightCm">Height (centimeters)</label>
           <input type="number" id="heightCm" step="0.1" min="10" max="300" placeholder="e.g. 170" value="170" autocomplete="off" inputmode="decimal" />
           <span class="field-hint" id="heightHint">170 cm</span>
         </div>
 
         <div class="input-group imperial" id="grpHeightImperial">
-          <label class="field-label" id="heightLabelImperial">Height (feet)</label>
+          <label class="field-label" id="heightLabelImperial" for="heightFeet">Height (feet)</label>
           <div class="inline-pair">
             <input type="number" id="heightFeet" step="0.01" min="0" max="8" placeholder="ft" value="5" autocomplete="off" inputmode="decimal" />
             <span class="inline-label">ft</span>
@@ -49,12 +49,12 @@
         </div>
 
         <div class="input-group">
-          <label class="field-label" id="weightLabel">Weight (kilograms)</label>
+          <label class="field-label" id="weightLabel" for="weightKg">Weight (kilograms)</label>
           <input type="number" id="weightKg" step="0.1" min="1" max="300" placeholder="e.g. 70" value="70" autocomplete="off" inputmode="decimal" />
           <span class="field-hint" id="weightHint">70 kg</span>
         </div>
         <div class="input-group imperial" id="grpWeightLb">
-          <label class="field-label" id="weightLabelLb">Weight (pounds)</label>
+          <label class="field-label" id="weightLabelLb" for="weightLb">Weight (pounds)</label>
           <input type="number" id="weightLb" step="0.1" min="1" max="1000" placeholder="e.g. 150" value="150" autocomplete="off" inputmode="numeric" />
           <span class="field-hint" id="weightHintLb">150 lb</span>
         </div>
