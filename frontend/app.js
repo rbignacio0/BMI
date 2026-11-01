@@ -300,6 +300,9 @@
             weightKg: data.WeightKg,
             category: data.Category
           };
+        } else {
+          // API returned error, fallback to client-side
+          throw new Error('API error');
         }
       } catch (fetchErr) {
         // Fallback to client-side calculation (offline mode)

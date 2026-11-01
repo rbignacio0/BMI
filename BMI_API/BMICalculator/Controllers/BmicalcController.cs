@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BMI_API.Controllers;
 
 [ApiController]
-[Route("["controller"]")]
+[Route("api/[controller]")]
 public class BmicalcController : ControllerBase
 {
     [HttpPost("calculate")]
@@ -76,6 +76,6 @@ public class BmiResult
     public double Bmi { get; set; }
     public double HeightMeters { get; set; }
     public double WeightKg { get; set; }
-    public string Category { get; set; }
-    public string Description { get; set; }
+    public string Category { get; set; } = "";
+    public string Description { get; set; } = "";
 }
