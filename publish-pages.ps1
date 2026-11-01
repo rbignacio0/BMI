@@ -4,15 +4,20 @@
     Publish the BMI Calculator frontend to GitHub Pages.
 
 .DESCRIPTION
-    Copies the static frontend files (index.html, style.css, app.js) from
-    ./frontend/ into ./docs/ so GitHub Pages can serve them. Optionally
-    commits and pushes the change to the configured branch.
+    Copies the static frontend files (index.html, style.css, app.js,
+    manifest.json, sw.js) from ./frontend/ into ./docs/ so GitHub Pages
+    can serve them. Optionally commits and pushes the change to the
+    configured branch.
+
+    This is a purely client-side static app — no backend API, no API
+    URL injection required.
 
     Prerequisites:
       - Git is installed and configured.
       - The repository remote (origin) is set.
-      - GitHub Pages is enabled in repo settings, source = "GitHub Actions"
-        (or "Deploy from a branch" pointing at docs/).
+      - GitHub Pages is enabled in repo settings, source = "Deploy from a
+        branch" pointing at docs/ (or use the actions/deploy-pages
+        workflow which deploys frontend/ directly).
 
 .PARAMETER Branch
     The branch to commit/push to. Default: main.
@@ -22,10 +27,6 @@
 
 .PARAMETER Message
     Commit message. Default: "chore: publish BMI frontend to GitHub Pages".
-
-.PARAMETER ApiBase
-    Override the API base URL written into frontend/app.js.
-    Example: https://bmicalc-api.azurewebsites.net
 #>
 [CmdletBinding()]
 param(
@@ -36,10 +37,7 @@ param(
     [switch]$Commit,
 
     [Parameter()]
-    [string]$Message = 'chore: publish BMI frontend to GitHub Pages',
-
-    [Parameter()]
-    [string]$ApiBase
+    [string]$Message = 'chore: publish BMI frontend to GitHub Pages'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -59,7 +57,7 @@ if (-not (Test-Path $frontendDir)) {
     exit 1
 }
 
-$requiredFiles = @('index.html', 'style.css', 'app.js')
+$requiredFiles = @('index.html', 'style.css', 'app.js', 'manifest.json', 'sw.js')
 foreach ($f in $requiredFiles) {
     $path = Join-Path $frontendDir $f
     if (-not (Test-Path $path)) {
@@ -74,21 +72,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 # ------------------------------------------------------------------
-# 2. Optionally inject the production API base URL into app.js
-# ------------------------------------------------------------------
-if ($PSBoundParameters.ContainsKey('ApiBase')) {
-    Write-Host "Injecting API base URL: $ApiBase" -ForegroundColor Yellow
-    $appJs = Join-Path $frontendDir 'app.js'
-    $content = Get-Content $appJs -Raw
-    $content = $content -replace "apiBase: 'http://localhost:5290'", "apiBase: '$ApiBase'"
-    Set-Content -Path $appJs -Value $content -Encoding UTF8
-    Write-Host "API base URL updated." -ForegroundColor Green
-} else {
-    Write-Host "No -ApiBase provided; app.js keeps its default (http://localhost:5290)." -ForegroundColor Gray
-}
-
-# ------------------------------------------------------------------
-# 3. Sync frontend files into docs/
+# 2. Sync frontend files into docs/
 # ------------------------------------------------------------------
 Write-Host "Copying frontend files to docs/ ..."
 if (-not (Test-Path $docsDir)) {
@@ -123,12 +107,12 @@ if ($Commit) {
     git -C $scriptDir commit -m "$Message"
     git -C $scriptDir push origin $Branch
     Write-Host "Published successfully to $Branch." -ForegroundColor Green
-    Write-Host "Enable GitHub Pages in repo settings and point it at the docs/ folder (or use the actions/deploy-pages workflow)." -ForegroundColor Gray
+    Write-Host "Enable GitHub Pages in repo settings and point it at the docs/ folder." -ForegroundColor Gray
 }
 else {
     Write-Host "`nFiles are staged in docs/ but not committed." -ForegroundColor Yellow
     Write-Host "Re-run with -Commit to push, e.g.:" -ForegroundColor Gray
-    Write-Host "  .\publish-pages.ps1 -Commit -ApiBase https://your-api.azurewebsites.net" -ForegroundColor Gray
+    Write-Host "  .\publish-pages.ps1 -Commit" -ForegroundColor Gray
 }
 
 Write-Host "`nDone." -ForegroundColor Cyan

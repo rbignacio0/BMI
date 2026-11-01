@@ -25,7 +25,9 @@
     heightCm: document.getElementById('heightCm'),
     weightKg: document.getElementById('weightKg'),
     heightLabel: document.getElementById('heightLabel'),
+    heightLabelImperial: document.getElementById('heightLabelImperial'),
     weightLabel: document.getElementById('weightLabel'),
+    weightLabelLb: document.getElementById('weightLabelLb'),
     heightHint: document.getElementById('heightHint'),
     weightHint: document.getElementById('weightHint'),
     grpHeightCm: document.getElementById('grpHeightCm'),
@@ -33,7 +35,6 @@
     grpWeightLb: document.getElementById('grpWeightLb'),
     // imperial
     heightFeet: document.getElementById('heightFeet'),
-
     weightLb: document.getElementById('weightLb'),
     // result
     resultCard: document.getElementById('resultCard'),

@@ -9,6 +9,9 @@ BMI calculator rewrite complete as a standalone HTML/CSS/JS static web app. Docu
 - Frontend (`frontend/`) fully rewritten: index.html, style.css, app.js, manifest.json, sw.js. Metric height = centimeters (cm); Imperial height = feet (ft).
 - New features: auto-convert values when switching unit systems; auto-clear stale results when user edits any input; manifest + service worker only load on http/https (avoids CORS on file://).
 - .NET backend fully removed.
+- `publish-pages.ps1` updated: removed `-ApiBase` parameter and API injection block; now copies frontend/ (including manifest.json, sw.js) into docs/ for GitHub Pages branch-based deployment.
+- `docs/` populated with frontend files and pushed to main (commit 593b15f). `.gitignore` no longer ignores `docs/`.
+- Fixed bug: added missing `heightLabelImperial` and `weightLabelLb` to `els` object in app.js (TypeError when clicking metric vs imperial). Republished to main (commit 88e20b4).
 - docs/ created with ProgramSpecification.md, Architecture.md, FeaturesAndLimitations.md.
 - README.md rewritten with deployment + docs references.
 - .github/workflows/pages.yml targets frontend/ (correct, no change needed).

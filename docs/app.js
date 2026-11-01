@@ -30,6 +30,7 @@
     weightLabelLb: document.getElementById('weightLabelLb'),
     heightHint: document.getElementById('heightHint'),
     weightHint: document.getElementById('weightHint'),
+    weightHintLb: document.getElementById('weightHintLb'),
     grpHeightCm: document.getElementById('grpHeightCm'),
     grpHeightImperial: document.getElementById('grpHeightImperial'),
     grpWeightLb: document.getElementById('grpWeightLb'),
